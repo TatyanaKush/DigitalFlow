@@ -1667,7 +1667,6 @@
                 который можно использовать сразу после внедрения.
               </div>
               <img src="assets/img/banner/banner.png" alt="test" style="display:block; width:300px; height:auto; border:3px solid red; background:#fff;">
-            
             </div>
 
             <div>
@@ -1724,7 +1723,7 @@
             </div>
 
             <div class="contact-form">
-              <form id="contactForm" action="send.php" method="POST" novalidate>
+              <form id="contactForm" action="https://formspree.io/f/xojyqdev" method="POST" novalidate>
                 <div class="field-wrap">
                   <label class="field-label" for="name">Имя</label>
                   <input
@@ -1763,6 +1762,7 @@
                   ></textarea>
                 </div>
 
+                <input type="hidden" name="_subject" value="Новая заявка с сайта DigitalFlow" />
                 <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off" />
 
                 <button id="submitBtn" class="btn-main" type="submit">
@@ -1772,8 +1772,6 @@
 
                 <div id="formMessage" class="form-message" aria-live="polite"></div>
               </form>
-
-          
             </div>
           </div>
         </div>
@@ -1851,18 +1849,24 @@
       try {
         const formData = new FormData(form);
 
-        const response = await fetch('send.php', {
+        const response = await fetch(form.action, {
           method: 'POST',
-          body: formData
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
         });
 
         const result = await response.json();
 
-        if (result.success) {
-          showFormMessage('success', result.message || 'Сообщение успешно отправлено.');
+        if (response.ok) {
+          showFormMessage('success', 'Сообщение успешно отправлено.');
           form.reset();
         } else {
-          showFormMessage('error', result.message || 'Не удалось отправить сообщение.');
+          showFormMessage(
+            'error',
+            result.errors?.[0]?.message || 'Не удалось отправить сообщение.'
+          );
         }
       } catch (error) {
         showFormMessage('error', 'Ошибка соединения. Попробуй позже.');
