@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>DigitalFlow — цифровые решения и автоматизация задач</title>
+  <meta
+    name="description"
+    content="Разработка мобильных приложений, веб-решений, Telegram-ботов и инструментов автоматизации под конкретные задачи."
+  />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon/boy.png" />
+
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+  <link rel="stylesheet" href="assets/css/default.css" />
+  <link rel="stylesheet" href="assets/css/aos.css" />
+
+  <style>
+    :root {
+      --bg: #090b13;
+      --bg-2: #101423;
+      --bg-3: #151a2e;
+      --card: rgba(255, 255, 255, 0.06);
+      --card-strong: rgba(255, 255, 255, 0.09);
+      --stroke: rgba(255, 255, 255, 0.10);
+      --stroke-soft: rgba(255, 255, 255, 0.07);
+      --text: #f5f7ff;
+      --muted: #b5bdd6;
+      --muted-2: #95a1c3;
+      --accent: #8a63ff;
+      --accent-2: #c59cff;
+      --accent-3: #5fe1ff;
+      --success: #42d392;
+      --danger: #ff7272;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.30);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
+      --container: 1240px;
+    }
+
+    @font-face {
+      font-family: "GilroyCustom";
+      src: url("assets/fonts/gilroy/Gilroy-Regular.woff") format("woff");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "GilroyCustom";
+      src: url("assets/fonts/gilroy/Gilroy-Medium.woff") format("woff");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "GilroyCustom";
+      src: url("assets/fonts/gilroy/Gilroy-Bold.woff") format("woff");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "GilroyCustom";
+      src: url("assets/fonts/gilroy/Gilroy-Heavy.woff") format("woff");
+      font-weight: 800;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "GilroyCustom", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 12% 12%, rgba(138, 99, 255, 0.22), transparent 28%),
+        radial-gradient(circle at 88% 16%, rgba(95, 225, 255, 0.14), transparent 23%),
+        radial-gradient(circle at 72% 74%, rgba(197, 156, 255, 0.14), transparent 24%),
+        linear-gradient(180deg, #070911 0%, #0d1020 42%, #0a0d18 100%);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(circle at center, black 35%, transparent 90%);
+      opacity: 0.18;
+      z-index: 0;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .df-container {
+      width: min(100% - 32px, var(--container));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-space {
+      padding: 110px 0;
+      position: relative;
+    }
+
+    .section-space-sm {
+      padding: 82px 0;
+      position: relative;
+    }
+
+    .section-head {
+      margin-bottom: 34px;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--stroke-soft);
+      color: #d8cbff;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .section-kicker::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-2), var(--accent-3));
+      box-shadow: 0 0 16px rgba(197,156,255,0.85);
+    }
+
+    .section-title {
+      font-size: clamp(30px, 4vw, 54px);
+      line-height: 1.08;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin: 0 0 16px;
+      color: #fff;
+    }
+
+    .section-text {
+      margin: 0;
+      max-width: 760px;
+      font-size: 18px;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    .glass-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: var(--radius-xl);
+    }
+
+    .btn-main,
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 58px;
+      padding: 0 28px;
+      border-radius: 16px;
+      font-size: 16px;
+      font-weight: 700;
+      transition: 0.28s ease;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .btn-main {
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 18px 40px rgba(138, 99, 255, 0.34);
+      border: none;
+    }
+
+    .btn-main:hover {
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 22px 48px rgba(138, 99, 255, 0.40);
+    }
+
+    .btn-main:disabled {
+      opacity: 0.7;
+      cursor: wait;
+      transform: none;
+    }
+
+    .btn-ghost {
+      color: #fff;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .btn-ghost:hover {
+      color: #fff;
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 10, 18, 0.60);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .header-inner {
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      color: #fff;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      font-size: 24px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(138,99,255,0.24), rgba(95,225,255,0.18));
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+      color: #fff;
+      font-size: 18px;
+    }
+
+    .brand-text span {
+      color: #d7c4ff;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .site-nav a {
+      color: rgba(255,255,255,0.84);
+      font-size: 15px;
+      font-weight: 600;
+      transition: 0.2s ease;
+      position: relative;
+    }
+
+    .site-nav a:hover {
+      color: #fff;
+    }
+
+    .site-nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -8px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-3));
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: 0.25s ease;
+    }
+
+    .site-nav a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .hero {
+      padding: 78px 0 26px;
+      position: relative;
+      overflow: clip;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(138,99,255,0.26), transparent 70%);
+      filter: blur(20px);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: -100px;
+      bottom: 20px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(95,225,255,0.18), transparent 72%);
+      filter: blur(20px);
+      pointer-events: none;
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      color: #ece6ff;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--stroke);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 22px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    }
+
+    .hero-badge i {
+      color: #d4c3ff;
+    }
+
+    .hero-title {
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: 0.98;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin: 0 0 24px;
+      color: #fff;
+      max-width: 760px;
+    }
+
+    .hero-title .accent-line {
+      display: block;
+      background: linear-gradient(90deg, #ffffff 0%, #d0c0ff 35%, #8ae8ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-text {
+      font-size: 19px;
+      line-height: 1.8;
+      color: var(--muted);
+      margin: 0 0 34px;
+      max-width: 660px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 34px;
+    }
+
+    .hero-mini-panels {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      max-width: 720px;
+    }
+
+    .mini-panel {
+      min-height: 104px;
+      border-radius: 22px;
+      padding: 18px 18px 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+      transition: 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mini-panel::before {
+      content: "";
+      position: absolute;
+      top: -60px;
+      right: -40px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(138,99,255,0.22), transparent 70%);
+      pointer-events: none;
+    }
+
+    .mini-panel:hover {
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.07);
+    }
+
+    .mini-panel-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .mini-panel-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #f0eaff;
+      background: linear-gradient(135deg, rgba(138,99,255,0.20), rgba(95,225,255,0.16));
+      border: 1px solid rgba(255,255,255,0.08);
+      flex-shrink: 0;
+    }
+
+    .mini-panel-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .mini-panel-text {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 690px;
+    }
+
+    .hero-screen {
+      position: relative;
+      z-index: 2;
+      width: min(100%, 560px);
+      margin-left: auto;
+      padding: 18px;
+      border-radius: 34px;
+    }
+
+    .screen-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 10px 18px;
+    }
+
+    .screen-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .screen-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: block;
+      background: rgba(255,255,255,0.18);
+    }
+
+    .screen-dots span:nth-child(1) { background: #f77979; }
+    .screen-dots span:nth-child(2) { background: #f5c265; }
+    .screen-dots span:nth-child(3) { background: #79d48c; }
+
+    .screen-head-label {
+      color: #dcd5ff;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .screen-body {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      min-height: 560px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)),
+        radial-gradient(circle at 70% 20%, rgba(138,99,255,0.18), transparent 22%),
+        #101423;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .hero-main-image {
+      position: absolute;
+      inset: auto 18px 0 18px;
+      width: calc(100% - 36px);
+      z-index: 1;
+      filter: drop-shadow(0 24px 40px rgba(0,0,0,0.28));
+    }
+
+    .hero-float {
+      position: absolute;
+      z-index: 3;
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      background: rgba(10, 14, 28, 0.80);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      animation: floatY 5.6s ease-in-out infinite;
+    }
+
+    .hero-float h6 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .hero-float p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .float-a {
+      top: 70px;
+      left: -22px;
+      width: 230px;
+      animation-delay: 0s;
+    }
+
+    .float-b {
+      top: 220px;
+      right: -12px;
+      width: 210px;
+      animation-delay: 1.2s;
+    }
+
+    .float-c {
+      left: 18px;
+      bottom: 56px;
+      width: 240px;
+      animation-delay: 2s;
+    }
+
+    .hero-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 44px;
+      padding: 0 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+      position: absolute;
+      z-index: 4;
+      box-shadow: var(--shadow);
+      animation: floatY 6s ease-in-out infinite;
+    }
+
+    .chip-1 {
+      top: 132px;
+      right: 36px;
+      animation-delay: 0.8s;
+    }
+
+    .chip-2 {
+      left: 56px;
+      top: 214px;
+      animation-delay: 1.7s;
+    }
+
+    .chip-3 {
+      right: 88px;
+      bottom: 138px;
+      animation-delay: 2.4s;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .stat-card {
+      padding: 22px 22px 20px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+      transition: 0.25s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.07);
+    }
+
+    .stat-num {
+      display: block;
+      font-size: 34px;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .stat-label {
+      display: block;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .about-box {
+      padding: 36px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .about-side-card {
+      padding: 22px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+      overflow: hidden;
+      min-height: 100%;
+    }
+
+    .about-side-card::before {
+      content: "";
+      position: absolute;
+      right: -40px;
+      bottom: -40px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(138,99,255,0.18), transparent 70%);
+    }
+
+    .about-side-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-side-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .about-side-icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #f6f1ff;
+      background: linear-gradient(135deg, rgba(138,99,255,0.22), rgba(95,225,255,0.14));
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .about-side-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .about-side-text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+
+    .service-card {
+      grid-column: span 4;
+      min-height: 280px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: 0.3s ease;
+    }
+
+    .service-card.wide {
+      grid-column: span 6;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.05));
+      border-color: rgba(138,99,255,0.34);
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      right: -50px;
+      top: -50px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(138,99,255,0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .service-icon {
+      width: 62px;
+      height: 62px;
+      border-radius: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #fff;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, rgba(138,99,255,0.26), rgba(95,225,255,0.16));
+      border: 1px solid rgba(255,255,255,0.09);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.07);
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-title {
+      font-size: 24px;
+      line-height: 1.18;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-text {
+      margin: 0 0 20px;
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--muted);
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-tags span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #dfd3ff;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .approach-card {
+      min-height: 230px;
+      padding: 24px 20px;
+      transition: 0.28s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .approach-card:hover {
+      transform: translateY(-5px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.05));
+    }
+
+    .approach-step {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 18px;
+      box-shadow: 0 12px 28px rgba(138,99,255,0.28);
+    }
+
+    .approach-title {
+      font-size: 20px;
+      line-height: 1.2;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 12px;
+    }
+
+    .approach-text {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .result-box {
+      padding: 38px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .result-box::after {
+      content: "";
+      position: absolute;
+      right: -70px;
+      bottom: -90px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(95,225,255,0.13), transparent 70%);
+      pointer-events: none;
+    }
+
+    .result-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .result-visual {
+      position: relative;
+      min-height: 320px;
+      border-radius: 28px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)),
+        #101423;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .result-visual img {
+      position: absolute;
+      inset: auto 24px 0 auto;
+      width: 78%;
+      max-width: 360px;
+      filter: drop-shadow(0 26px 30px rgba(0,0,0,0.25));
+    }
+
+    .result-panel {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #fff;
+      font-size: 15px;
+      line-height: 1.55;
+      box-shadow: var(--shadow);
+    }
+
+    .result-panel strong {
+      display: block;
+      font-size: 17px;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+
+    .contact-box {
+      padding: 38px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-box::before {
+      content: "";
+      position: absolute;
+      left: -60px;
+      top: -60px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(138,99,255,0.16), transparent 70%);
+      pointer-events: none;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .contact-side {
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-side-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .contact-side-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .contact-side-item i {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      background: linear-gradient(135deg, rgba(138,99,255,0.24), rgba(95,225,255,0.15));
+      flex-shrink: 0;
+    }
+
+    .contact-side-item strong {
+      display: block;
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .contact-side-item span {
+      display: block;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .contact-form {
+      position: relative;
+      z-index: 1;
+      padding: 22px;
+      border-radius: 26px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .field-wrap {
+      margin-bottom: 14px;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: #d7dbeb;
+      margin-bottom: 8px;
+    }
+
+    .contact-input,
+    .contact-textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      border-radius: 16px;
+      outline: none;
+      transition: 0.2s ease;
+      font-size: 15px;
+    }
+
+    .contact-input {
+      height: 58px;
+      padding: 0 18px;
+    }
+
+    .contact-textarea {
+      min-height: 154px;
+      padding: 16px 18px;
+      resize: vertical;
+    }
+
+    .contact-input::placeholder,
+    .contact-textarea::placeholder {
+      color: #98a2bf;
+    }
+
+    .contact-input:focus,
+    .contact-textarea:focus {
+      border-color: rgba(138,99,255,0.44);
+      box-shadow: 0 0 0 4px rgba(138,99,255,0.10);
+    }
+
+    .form-message {
+      display: none;
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      font-size: 14px;
+      line-height: 1.6;
+      border: 1px solid transparent;
+    }
+
+    .form-message.show {
+      display: block;
+    }
+
+    .form-message.success {
+      color: #dbffef;
+      background: rgba(66, 211, 146, 0.12);
+      border-color: rgba(66, 211, 146, 0.25);
+    }
+
+    .form-message.error {
+      color: #ffe3e3;
+      background: rgba(255, 114, 114, 0.12);
+      border-color: rgba(255, 114, 114, 0.25);
+    }
+
+    .form-note {
+      margin-top: 14px;
+      color: var(--muted-2);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .site-footer {
+      padding: 30px 0 54px;
+      color: #8992ad;
+      font-size: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .footer-brand {
+      color: #d8dcf1;
+      font-weight: 700;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(34px);
+      transition: 0.8s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    @media (max-width: 1199px) {
+      .hero-layout,
+      .about-grid,
+      .result-layout,
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        min-height: 640px;
+      }
+
+      .hero-screen {
+        margin: 0 auto;
+      }
+
+      .approach-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 991px) {
+      .site-nav {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 52px;
+      }
+
+      .hero-mini-panels,
+      .stats-row {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .service-card,
+      .service-card.wide {
+        grid-column: auto;
+      }
+
+      .approach-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-visual {
+        min-height: 600px;
+      }
+
+      .float-a { left: 0; }
+      .float-b { right: 0; }
+      .chip-2 { left: 16px; }
+    }
+
+    @media (max-width: 767px) {
+      .section-space {
+        padding: 82px 0;
+      }
+
+      .section-space-sm {
+        padding: 64px 0;
+      }
+
+      .header-inner {
+        min-height: 74px;
+      }
+
+      .brand {
+        font-size: 20px;
+      }
+
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+      }
+
+      .header-inner .btn-main {
+        display: none;
+      }
+
+      .hero-title {
+        font-size: 42px;
+      }
+
+      .hero-text {
+        font-size: 16px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-main,
+      .btn-ghost {
+        width: 100%;
+      }
+
+      .hero-visual {
+        min-height: 520px;
+      }
+
+      .hero-screen {
+        width: 100%;
+        padding: 14px;
+        border-radius: 24px;
+      }
+
+      .screen-body {
+        min-height: 460px;
+        border-radius: 20px;
+      }
+
+      .float-a,
+      .float-b,
+      .float-c,
+      .chip-1,
+      .chip-2,
+      .chip-3 {
+        position: static;
+        width: 100%;
+        margin-top: 14px;
+        animation: none;
+      }
+
+      .hero-main-image {
+        inset: auto 12px 0 12px;
+        width: calc(100% - 24px);
+      }
+
+      .about-box,
+      .result-box,
+      .contact-box {
+        padding: 24px;
+        border-radius: 22px;
+      }
+
+      .services-grid,
+      .approach-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="df-container">
+      <div class="header-inner">
+        <a href="#top" class="brand">
+          <span class="brand-mark"><i class="fas fa-bolt"></i></span>
+          <span class="brand-text">Digital<span>Flow</span></span>
+        </a>
+
+        <nav class="site-nav">
+          <a href="#about">О нас</a>
+          <a href="#services">Услуги</a>
+          <a href="#approach">Подход</a>
+          <a href="#result">Результат</a>
+          <a href="#contact">Контакт</a>
+        </nav>
+
+        <a href="#contact" class="btn-main">Обсудить задачу</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="df-container">
+        <div class="hero-layout">
+          <div class="hero-content">
+            <div class="hero-badge reveal">
+              <i class="fas fa-sparkles"></i>
+              Прикладная разработка и автоматизация
+            </div>
+
+            <h1 class="hero-title reveal">
+              <span class="accent-line">Цифровые решения</span>
+              и автоматизация задач
+            </h1>
+
+            <p class="hero-text reveal">
+              Разрабатываем мобильные приложения, веб-решения и инструменты автоматизации
+              под конкретные задачи. Фокус на понятной логике, удобстве и реальной пользе,
+              без лишней сложности и перегруженных сценариев.
+            </p>
+
+            <div class="hero-actions reveal">
+              <a href="#contact" class="btn-main">
+                <i class="fas fa-arrow-right"></i>
+                Обсудить задачу
+              </a>
+              <a href="#services" class="btn-ghost">
+                <i class="fas fa-layer-group"></i>
+                Посмотреть услуги
+              </a>
+            </div>
+
+            <div class="hero-mini-panels">
+              <div class="mini-panel reveal">
+                <div class="mini-panel-top">
+                  <span class="mini-panel-icon"><i class="fas fa-mobile-alt"></i></span>
+                  <div class="mini-panel-title">Мобильные решения</div>
+                </div>
+                <p class="mini-panel-text">
+                  Android-приложения под конкретные сценарии использования.
+                </p>
+              </div>
+
+              <div class="mini-panel reveal">
+                <div class="mini-panel-top">
+                  <span class="mini-panel-icon"><i class="fas fa-window-maximize"></i></span>
+                  <div class="mini-panel-title">Веб и лендинги</div>
+                </div>
+                <p class="mini-panel-text">
+                  Структурные и визуально сильные одностраничные сайты.
+                </p>
+              </div>
+
+              <div class="mini-panel reveal">
+                <div class="mini-panel-top">
+                  <span class="mini-panel-icon"><i class="fab fa-telegram-plane"></i></span>
+                  <div class="mini-panel-title">Telegram-боты</div>
+                </div>
+                <p class="mini-panel-text">
+                  Уведомления, сбор данных, сценарии сопровождения и автоматизация.
+                </p>
+              </div>
+
+              <div class="mini-panel reveal">
+                <div class="mini-panel-top">
+                  <span class="mini-panel-icon"><i class="fas fa-cogs"></i></span>
+                  <div class="mini-panel-title">Автоматизация</div>
+                </div>
+                <p class="mini-panel-text">
+                  Упрощение рутины, отчётов и повторяющихся рабочих действий.
+                </p>
+              </div>
+            </div>
+
+            <div class="stats-row">
+              <div class="stat-card reveal">
+                <span class="stat-num">01</span>
+                <span class="stat-label">Одна задача — одно понятное решение без перегруза</span>
+              </div>
+              <div class="stat-card reveal">
+                <span class="stat-num">02</span>
+                <span class="stat-label">Логика и удобство важнее декоративного шума</span>
+              </div>
+              <div class="stat-card reveal">
+                <span class="stat-num">03</span>
+                <span class="stat-label">Результат можно использовать сразу после внедрения</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual reveal">
+            <div class="hero-screen glass-card">
+              <div class="screen-head">
+                <div class="screen-dots">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="screen-head-label">DigitalFlow / studio mode</div>
+              </div>
+
+              <div class="screen-body">
+                <img
+                  class="hero-main-image"
+                  src="assets/img/banner/banner04.png"
+                  alt="Цифровые решения и автоматизация"
+                />
+              </div>
+            </div>
+
+            <div class="hero-float float-a">
+              <h6>Понятная структура</h6>
+              <p>
+                Каждое решение строится вокруг конкретной цели, а не вокруг набора случайных функций.
+              </p>
+            </div>
+
+            <div class="hero-float float-b">
+              <h6>Прикладной результат</h6>
+              <p>
+                Итогом становится рабочий инструмент, а не просто красивая обложка.
+              </p>
+            </div>
+
+            <div class="hero-float float-c">
+              <h6>Гибкость для роста</h6>
+              <p>
+                Базу можно развивать дальше: расширять сценарии, усиливать интерфейс, дорабатывать логику.
+              </p>
+            </div>
+
+            <div class="hero-chip chip-1"><i class="fas fa-robot"></i> Автоматизация</div>
+            <div class="hero-chip chip-2"><i class="fas fa-mobile-alt"></i> Android</div>
+            <div class="hero-chip chip-3"><i class="fab fa-telegram-plane"></i> Telegram-боты</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-space-sm" id="about">
+      <div class="df-container">
+        <div class="section-head reveal">
+          <span class="section-kicker">О нас</span>
+          <h2 class="section-title">Разработка без лишней сложности</h2>
+          <p class="section-text">
+            Мы занимаемся разработкой цифровых решений и автоматизацией процессов.
+            Фокусируемся на задачах, где важны понятная логика, удобство и практическая польза.
+            Подбираем подходящие инструменты и реализуем решения без лишней сложности.
+          </p>
+        </div>
+
+        <div class="about-box glass-card reveal">
+          <div class="about-grid">
+            <div>
+              <p class="section-text" style="max-width:none;">
+                Подход строится вокруг задачи клиента, а не вокруг набора шаблонных функций.
+                Это позволяет делать спокойные, практичные и удобные решения, которые
+                не перегружают пользователя и не усложняют рабочий процесс.
+              </p>
+            </div>
+
+            <div class="about-side-card">
+              <div class="about-side-row">
+                <span class="about-side-icon"><i class="fas fa-project-diagram"></i></span>
+                <div>
+                  <div class="about-side-title">Понятная логика</div>
+                  <p class="about-side-text">Структура решения сразу понятна в использовании.</p>
+                </div>
+              </div>
+
+              <div class="about-side-row">
+                <span class="about-side-icon"><i class="fas fa-sliders-h"></i></span>
+                <div>
+                  <div class="about-side-title">Практическая польза</div>
+                  <p class="about-side-text">Фокус на том, что действительно работает в процессе.</p>
+                </div>
+              </div>
+
+              <div class="about-side-row">
+                <span class="about-side-icon"><i class="fas fa-expand-arrows-alt"></i></span>
+                <div>
+                  <div class="about-side-title">Возможность развития</div>
+                  <p class="about-side-text">Решение можно расширять и дорабатывать дальше.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-space" id="services">
+      <div class="df-container">
+        <div class="section-head reveal">
+          <span class="section-kicker">Услуги</span>
+          <h2 class="section-title">Что можно сделать на нашей стороне</h2>
+          <p class="section-text">
+            От одностраничных сайтов и мобильных приложений до ботов и автоматизации
+            повторяющихся рабочих задач.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card glass-card reveal">
+            <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+            <h3 class="service-title">Разработка мобильных приложений (Android)</h3>
+            <p class="service-text">
+              Прикладные мобильные решения под конкретные сценарии: понятный интерфейс,
+              логика действий и удобная дальнейшая доработка.
+            </p>
+            <div class="service-tags">
+              <span>Android</span>
+              <span>UI</span>
+              <span>Локальные сценарии</span>
+            </div>
+          </article>
+
+          <article class="service-card glass-card reveal">
+            <div class="service-icon"><i class="fas fa-window-maximize"></i></div>
+            <h3 class="service-title">Создание сайтов-визиток и лендингов</h3>
+            <p class="service-text">
+              Одностраничные сайты с сильной структурой, современным визуалом и
+              понятной подачей услуги или продукта.
+            </p>
+            <div class="service-tags">
+              <span>Landing</span>
+              <span>Структура</span>
+              <span>Адаптивность</span>
+            </div>
+          </article>
+
+          <article class="service-card glass-card reveal">
+            <div class="service-icon"><i class="fab fa-telegram-plane"></i></div>
+            <h3 class="service-title">Разработка Telegram-ботов</h3>
+            <p class="service-text">
+              Боты для уведомлений, сбора информации, сопровождения процессов
+              и автоматизации повторяющихся действий.
+            </p>
+            <div class="service-tags">
+              <span>Telegram</span>
+              <span>Уведомления</span>
+              <span>Сценарии</span>
+            </div>
+          </article>
+
+          <article class="service-card wide glass-card reveal">
+            <div class="service-icon"><i class="fas fa-file-invoice"></i></div>
+            <h3 class="service-title">Автоматизация задач и отчётов</h3>
+            <p class="service-text">
+              Упрощение рутинных процессов, обработка данных, формирование отчётов и
+              настройка рабочих сценариев, которые экономят время и снижают объём
+              ручной нагрузки.
+            </p>
+            <div class="service-tags">
+              <span>Автоматизация</span>
+              <span>Отчёты</span>
+              <span>Рутина</span>
+              <span>Скорость</span>
+            </div>
+          </article>
+
+          <article class="service-card wide glass-card reveal">
+            <div class="service-icon"><i class="fas fa-sitemap"></i></div>
+            <h3 class="service-title">Настройка цифровых инструментов под бизнес-процессы</h3>
+            <p class="service-text">
+              Внутренние инструменты, логика взаимодействия, упорядочивание действий и
+              прикладные решения, которые вписываются в рабочую среду команды.
+            </p>
+            <div class="service-tags">
+              <span>Процессы</span>
+              <span>Внутренние инструменты</span>
+              <span>Гибкость</span>
+              <span>Масштабирование</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-space" id="approach">
+      <div class="df-container">
+        <div class="section-head reveal">
+          <span class="section-kicker">Подход к работе</span>
+          <h2 class="section-title">Пошаговая и понятная логика работы</h2>
+          <p class="section-text">
+            Сначала смысл и структура, потом реализация. Это позволяет делать решения,
+            которые выглядят аккуратно и работают по назначению.
+          </p>
+        </div>
+
+        <div class="approach-grid">
+          <article class="approach-card glass-card reveal">
+            <div class="approach-step">01</div>
+            <h3 class="approach-title">Анализ задачи перед началом работы</h3>
+            <p class="approach-text">
+              Сначала разбираем цель, ограничения и сценарий использования.
+            </p>
+          </article>
+
+          <article class="approach-card glass-card reveal">
+            <div class="approach-step">02</div>
+            <h3 class="approach-title">Чёткая и понятная структура решений</h3>
+            <p class="approach-text">
+              Лишние элементы отсеиваются ещё до этапа реализации.
+            </p>
+          </article>
+
+          <article class="approach-card glass-card reveal">
+            <div class="approach-step">03</div>
+            <h3 class="approach-title">Ориентация на практическое применение</h3>
+            <p class="approach-text">
+              Всё должно работать на задачу, а не просто выглядеть эффектно.
+            </p>
+          </article>
+
+          <article class="approach-card glass-card reveal">
+            <div class="approach-step">04</div>
+            <h3 class="approach-title">Минимум лишних функций — максимум пользы</h3>
+            <p class="approach-text">
+              Интерфейс и сценарии остаются удобными и управляемыми.
+            </p>
+          </article>
+
+          <article class="approach-card glass-card reveal">
+            <div class="approach-step">05</div>
+            <h3 class="approach-title">Возможность дальнейшего развития и доработки</h3>
+            <p class="approach-text">
+              Решение можно расширять по мере роста задач без переделки с нуля.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-space-sm" id="result">
+      <div class="df-container">
+        <div class="result-box glass-card reveal">
+          <div class="result-layout">
+            <div class="result-visual">
+              <div class="result-panel">
+                <strong>Результат работы</strong>
+                На выходе — не просто идея и не набор красивых блоков, а рабочий инструмент,
+                который можно использовать сразу после внедрения.
+              </div>
+              <img src="assets/img/banner/banner.png" alt="Рабочий цифровой инструмент" />
+            </div>
+
+            <div>
+              <span class="section-kicker">Результат</span>
+              <h2 class="section-title" style="margin-top:0;">Рабочий инструмент, готовый к применению</h2>
+              <p class="section-text" style="max-width:none;">
+                На выходе вы получаете рабочий инструмент, который решает конкретную задачу
+                и может быть использован сразу после внедрения. Он остаётся удобным в повседневной
+                работе и при необходимости становится базой для дальнейшего развития.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-space" id="contact">
+      <div class="df-container">
+        <div class="contact-box glass-card reveal">
+          <div class="contact-layout">
+            <div class="contact-side">
+              <span class="section-kicker">Контакт</span>
+              <h2 class="section-title">Обсудить задачу</h2>
+              <p class="section-text" style="max-width:none;">
+                Оставь имя и краткое описание задачи. Заявка уйдёт напрямую на почту,
+                без публикации адреса на сайте.
+              </p>
+
+              <div class="contact-side-list">
+                <div class="contact-side-item">
+                  <i class="fas fa-check-circle"></i>
+                  <div>
+                    <strong>Прямое направление</strong>
+                    <span>Все заявки отправляются только в одну сторону — на указанную почту.</span>
+                  </div>
+                </div>
+
+                <div class="contact-side-item">
+                  <i class="fas fa-lightbulb"></i>
+                  <div>
+                    <strong>Понятный первый контакт</strong>
+                    <span>Только имя, контакт и описание задачи — без лишних полей.</span>
+                  </div>
+                </div>
+
+                <div class="contact-side-item">
+                  <i class="fas fa-shield-alt"></i>
+                  <div>
+                    <strong>Адрес скрыт от посетителя</strong>
+                    <span>На странице почта не отображается и не участвует в интерфейсе.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-form">
+              <form id="contactForm" action="send.php" method="POST" novalidate>
+                <div class="field-wrap">
+                  <label class="field-label" for="name">Имя</label>
+                  <input
+                    class="contact-input"
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Введите имя"
+                    maxlength="100"
+                    required
+                  />
+                </div>
+
+                <div class="field-wrap">
+                  <label class="field-label" for="contact">Контакт для связи</label>
+                  <input
+                    class="contact-input"
+                    id="contact"
+                    name="contact"
+                    type="text"
+                    placeholder="Почта, Telegram или другой способ связи"
+                    maxlength="150"
+                    required
+                  />
+                </div>
+
+                <div class="field-wrap">
+                  <label class="field-label" for="message">Описание задачи</label>
+                  <textarea
+                    class="contact-textarea"
+                    id="message"
+                    name="message"
+                    placeholder="Кратко опишите, что нужно сделать"
+                    maxlength="3000"
+                    required
+                  ></textarea>
+                </div>
+
+                <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off" />
+
+                <button id="submitBtn" class="btn-main" type="submit">
+                  <i class="fas fa-paper-plane"></i>
+                  Связаться
+                </button>
+
+                <div id="formMessage" class="form-message" aria-live="polite"></div>
+              </form>
+
+              <div class="form-note">
+                После отправки заявка попадёт на указанную почту с пометкой, что это сообщение с сайта DigitalFlow.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="df-container">
+      <div class="footer-inner">
+        <div class="footer-brand">DigitalFlow</div>
+        <div>Цифровые решения и автоматизация задач</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const revealItems = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    revealItems.forEach((item) => observer.observe(item));
+
+    const visual = document.querySelector('.hero-visual');
+    if (visual && window.innerWidth > 991) {
+      visual.addEventListener('mousemove', (e) => {
+        const rect = visual.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+        visual.querySelectorAll('.hero-float, .hero-chip').forEach((el, i) => {
+          const factor = (i + 1) * 4;
+          el.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+        });
+      });
+
+      visual.addEventListener('mouseleave', () => {
+        visual.querySelectorAll('.hero-float, .hero-chip').forEach((el) => {
+          el.style.transform = '';
+        });
+      });
+    }
+
+    const form = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function showFormMessage(type, text) {
+      formMessage.className = 'form-message show ' + type;
+      formMessage.textContent = text;
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = form.name.value.trim();
+      const contact = form.contact.value.trim();
+      const message = form.message.value.trim();
+
+      if (!name || !contact || !message) {
+        showFormMessage('error', 'Пожалуйста, заполни все поля формы.');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      showFormMessage('success', 'Отправка...');
+
+      try {
+        const formData = new FormData(form);
+
+        const response = await fetch('send.php', {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          showFormMessage('success', result.message || 'Сообщение успешно отправлено.');
+          form.reset();
+        } else {
+          showFormMessage('error', result.message || 'Не удалось отправить сообщение.');
+        }
+      } catch (error) {
+        showFormMessage('error', 'Ошибка соединения. Попробуй позже.');
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

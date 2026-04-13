@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Цифровые решения и автоматизация задач</title>
+  <meta
+    name="description"
+    content="Разработка мобильных приложений, веб-решений и инструментов автоматизации под конкретные задачи."
+  />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon/boy.png" />
+
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+  <link rel="stylesheet" href="assets/css/default.css" />
+  <link rel="stylesheet" href="assets/css/aos.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+    :root {
+      --bg: #0b0b12;
+      --bg-2: #12131c;
+      --card: rgba(255, 255, 255, 0.06);
+      --card-border: rgba(255, 255, 255, 0.09);
+      --text: #f3f4f8;
+      --muted: #b6b8c5;
+      --accent: #8e6bff;
+      --accent-2: #b79cff;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Gilroy", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 12%, rgba(142, 107, 255, 0.20), transparent 28%),
+        radial-gradient(circle at 88% 22%, rgba(183, 156, 255, 0.14), transparent 26%),
+        radial-gradient(circle at 60% 78%, rgba(111, 71, 255, 0.12), transparent 24%),
+        linear-gradient(180deg, #090a10 0%, #0f1118 100%);
+      overflow-x: hidden;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(8, 10, 16, 0.72);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .header-inner {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: #fff;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      color: var(--accent-2);
+    }
+
+    .nav-mini {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-mini a {
+      color: rgba(255, 255, 255, 0.82);
+      text-decoration: none;
+      font-size: 15px;
+      transition: 0.25s ease;
+    }
+
+    .nav-mini a:hover {
+      color: #fff;
+    }
+
+    .btn-main {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 54px;
+      padding: 0 26px;
+      border-radius: 14px;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 14px 34px rgba(142, 107, 255, 0.28);
+      transition: 0.28s ease;
+      cursor: pointer;
+    }
+
+    .btn-main:hover {
+      transform: translateY(-2px);
+      color: #fff;
+      box-shadow: 0 18px 40px rgba(142, 107, 255, 0.34);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 0 24px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 600;
+      color: #fff;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.09);
+      transition: 0.25s ease;
+    }
+
+    .btn-ghost:hover {
+      color: #fff;
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.09);
+    }
+
+    .hero {
+      position: relative;
+      padding: 82px 0 38px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #e8e9f4;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 22px;
+    }
+
+    .hero-badge i {
+      color: var(--accent-2);
+    }
+
+    .hero-title {
+      font-size: clamp(38px, 7vw, 68px);
+      line-height: 1.04;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #fff;
+      margin: 0 0 22px;
+      max-width: 720px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(90deg, #ffffff 0%, #c9b8ff 40%, #9f83ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-text {
+      max-width: 620px;
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 34px;
+    }
+
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 620px;
+    }
+
+    .hero-point {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 62px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #f2f3f8;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-point i {
+      width: 38px;
+      height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: rgba(142, 107, 255, 0.18);
+      color: #cebfff;
+      flex-shrink: 0;
+    }
+
+    .hero-visual-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-visual {
+      position: relative;
+      width: 100%;
+      max-width: 560px;
+      min-height: 560px;
+      border-radius: 32px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: auto -60px -100px auto;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(142,107,255,0.38), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      inset: -70px auto auto -70px;
+      width: 230px;
+      height: 230px;
+      background: radial-gradient(circle, rgba(200,180,255,0.20), transparent 70%);
+      pointer-events: none;
+    }
+
+    .visual-card-top {
+      position: absolute;
+      top: 28px;
+      left: 28px;
+      right: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      z-index: 2;
+    }
+
+    .visual-card-top .small {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .visual-card-top .big {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .visual-card-top .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a387ff, #7f5fff);
+      box-shadow: 0 0 18px rgba(142, 107, 255, 0.8);
+      flex-shrink: 0;
+      margin-left: 18px;
+    }
+
+    .hero-visual img {
+      position: absolute;
+      right: -8px;
+      bottom: 0;
+      width: 88%;
+      max-width: 500px;
+      object-fit: contain;
+      z-index: 1;
+      opacity: 0.96;
+    }
+
+    .floating-note {
+      position: absolute;
+      z-index: 2;
+      max-width: 230px;
+      padding: 18px 18px;
+      border-radius: 18px;
+      background: rgba(14, 15, 22, 0.80);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+      color: #fff;
+    }
+
+    .floating-note h6 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .floating-note p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .note-1 {
+      left: 20px;
+      bottom: 132px;
+    }
+
+    .note-2 {
+      right: 22px;
+      bottom: 24px;
+    }
+
+    .section-space {
+      padding: 42px 0;
+    }
+
+    .section-head {
+      margin-bottom: 28px;
+    }
+
+    .section-kicker {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #c6b5ff;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.12;
+      font-weight: 800;
+      margin: 0 0 14px;
+      color: #fff;
+    }
+
+    .section-text {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    .about-box,
+    .result-box,
+    .contact-box,
+    .service-card,
+    .approach-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .about-box,
+    .result-box,
+    .contact-box {
+      padding: 32px;
+    }
+
+    .service-card,
+    .approach-card {
+      height: 100%;
+      padding: 28px;
+      transition: 0.28s ease;
+    }
+
+    .service-card:hover,
+    .approach-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(142, 107, 255, 0.30);
+      box-shadow: 0 24px 54px rgba(0, 0, 0, 0.34);
+    }
+
+    .service-icon,
+    .approach-icon {
+      width: 58px;
+      height: 58px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      margin-bottom: 18px;
+      font-size: 22px;
+      color: #e7dcff;
+      background: linear-gradient(135deg, rgba(142,107,255,0.22), rgba(183,156,255,0.14));
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .service-title,
+    .approach-title {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    .service-text,
+    .approach-text {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .result-box {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .result-box::after {
+      content: "";
+      position: absolute;
+      inset: auto -40px -80px auto;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(142,107,255,0.24), transparent 70%);
+      pointer-events: none;
+    }
+
+    .contact-box .section-text {
+      max-width: none;
+    }
+
+    .contact-form {
+      margin-top: 24px;
+    }
+
+    .contact-field {
+      width: 100%;
+      height: 58px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+      padding: 0 18px;
+      font-size: 15px;
+      outline: none;
+      transition: 0.2s ease;
+    }
+
+    .contact-field:focus,
+    .contact-area:focus {
+      border-color: rgba(142,107,255,0.45);
+      box-shadow: 0 0 0 4px rgba(142,107,255,0.10);
+    }
+
+    .contact-area {
+      width: 100%;
+      min-height: 140px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+      padding: 16px 18px;
+      font-size: 15px;
+      outline: none;
+      resize: vertical;
+      transition: 0.2s ease;
+    }
+
+    .contact-field::placeholder,
+    .contact-area::placeholder {
+      color: #9699a8;
+    }
+
+    .mini-note {
+      margin-top: 16px;
+      color: #999dae;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .site-footer {
+      padding: 28px 0 48px;
+      color: #8d91a3;
+      font-size: 14px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: 0.7s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1199px) {
+      .hero-visual {
+        min-height: 500px;
+      }
+      .hero-visual img {
+        width: 82%;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .header-inner {
+        min-height: 72px;
+      }
+
+      .nav-mini {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 56px;
+      }
+
+      .hero-visual-wrap {
+        margin-top: 34px;
+      }
+
+      .hero-visual {
+        min-height: 480px;
+      }
+
+      .hero-points {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .hero-title {
+        max-width: 100%;
+      }
+
+      .hero-text {
+        font-size: 16px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-main,
+      .btn-ghost {
+        width: 100%;
+      }
+
+      .hero-visual {
+        min-height: 420px;
+        border-radius: 24px;
+      }
+
+      .visual-card-top {
+        top: 16px;
+        left: 16px;
+        right: 16px;
+        padding: 14px 15px;
+      }
+
+      .floating-note {
+        position: static;
+        max-width: 100%;
+        margin: 14px 16px 0;
+      }
+
+      .hero-visual img {
+        width: 92%;
+        right: 50%;
+        transform: translateX(50%);
+        bottom: 0;
+      }
+
+      .about-box,
+      .result-box,
+      .contact-box,
+      .service-card,
+      .approach-card {
+        border-radius: 20px;
+      }
+
+      .about-box,
+      .result-box,
+      .contact-box,
+      .service-card,
+      .approach-card {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="#top" class="brand">Digital<span>Flow</span></a>
+
+        <nav class="nav-mini">
+          <a href="#about">О нас</a>
+          <a href="#services">Услуги</a>
+          <a href="#approach">Подход</a>
+          <a href="#contact">Контакт</a>
+        </nav>
+
+        <a href="#contact" class="btn-main">Обсудить задачу</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-6">
+            <div class="reveal">
+              <div class="hero-badge">
+                <i class="fas fa-sparkles"></i>
+                Прикладная разработка и автоматизация
+              </div>
+
+              <h1 class="hero-title">
+                <span>Цифровые решения</span><br />
+                и автоматизация задач
+              </h1>
+
+              <p class="hero-text">
+                Разрабатываем мобильные приложения, веб-решения и инструменты
+                автоматизации под конкретные задачи. Без перегрузки, с понятной
+                логикой и фокусом на реальную пользу.
+              </p>
+
+              <div class="hero-actions">
+                <a href="#contact" class="btn-main">Обсудить задачу</a>
+                <a href="#services" class="btn-ghost">Посмотреть услуги</a>
+              </div>
+
+              <div class="hero-points">
+                <div class="hero-point">
+                  <i class="fas fa-mobile-alt"></i>
+                  <span>Мобильные и веб-решения под задачу</span>
+                </div>
+                <div class="hero-point">
+                  <i class="fas fa-robot"></i>
+                  <span>Автоматизация процессов без лишней сложности</span>
+                </div>
+                <div class="hero-point">
+                  <i class="fas fa-project-diagram"></i>
+                  <span>Понятная структура и удобный сценарий использования</span>
+                </div>
+                <div class="hero-point">
+                  <i class="fas fa-layer-group"></i>
+                  <span>Основа для дальнейшего развития и доработки</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="hero-visual-wrap reveal">
+              <div class="hero-visual">
+                <div class="visual-card-top">
+                  <div>
+                    <div class="small">Фокус работы</div>
+                    <div class="big">Практичные цифровые инструменты</div>
+                  </div>
+                  <div class="dot"></div>
+                </div>
+
+                <div class="floating-note note-1">
+                  <h6>Без перегруза</h6>
+                  <p>
+                    Нужные функции, аккуратный интерфейс и понятный результат
+                    без лишнего визуального шума.
+                  </p>
+                </div>
+
+                <div class="floating-note note-2">
+                  <h6>Под конкретную цель</h6>
+                  <p>
+                    Не абстрактный продукт, а решение, которое можно использовать
+                    сразу после внедрения.
+                  </p>
+                </div>
+
+                <img src="assets/img/banner/banner04.png" alt="Цифровые решения" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-space" id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-kicker">О нас</span>
+          <h2 class="section-title">Разработка без лишней сложности</h2>
+        </div>
+
+        <div class="about-box reveal">
+          <p class="section-text">
+            Мы занимаемся разработкой цифровых решений и автоматизацией процессов.
+            Фокусируемся на задачах, где важны понятная логика, удобство и
+            практическая польза. Подбираем подходящие инструменты и реализуем
+            решения так, чтобы ими было удобно пользоваться и сейчас, и дальше —
+            по мере роста задач.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-space" id="services">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-kicker">Услуги</span>
+          <h2 class="section-title">Что можем сделать</h2>
+          <p class="section-text">
+            Базовая структура, прикладной сценарий и аккуратная реализация без
+            перегруженных решений и лишних функций.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-xl-4">
+            <div class="service-card reveal">
+              <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+              <h3 class="service-title">Мобильные приложения (Android)</h3>
+              <p class="service-text">
+                Простые и полезные приложения под конкретные сценарии: интерфейс,
+                логика, локальная работа и дальнейшая доработка.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-xl-4">
+            <div class="service-card reveal">
+              <div class="service-icon"><i class="fas fa-window-maximize"></i></div>
+              <h3 class="service-title">Сайты-визитки и лендинги</h3>
+              <p class="service-text">
+                Одностраничные сайты с внятной структурой, современным визуалом и
+                акцентом на доверие, понятность и действие.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-xl-4">
+            <div class="service-card reveal">
+              <div class="service-icon"><i class="fab fa-telegram-plane"></i></div>
+              <h3 class="service-title">Telegram-боты</h3>
+              <p class="service-text">
+                Боты для общения, уведомлений, сбора информации, простых сценариев
+                сопровождения и автоматизации повторяющихся действий.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-xl-6">
+            <div class="service-card reveal">
+              <div class="service-icon"><i class="fas fa-cogs"></i></div>
+              <h3 class="service-title">Автоматизация задач и отчётов</h3>
+              <p class="service-text">
+                Упрощение рутинных процессов, обработка данных, подготовка
+                повторяющихся отчётов и настройка рабочих сценариев, которые
+                экономят время.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-xl-6">
+            <div class="service-card reveal">
+              <div class="service-icon"><i class="fas fa-sitemap"></i></div>
+              <h3 class="service-title">Цифровые инструменты под бизнес-процессы</h3>
+              <p class="service-text">
+                Настройка прикладных решений под конкретную работу команды:
+                внутренние инструменты, упорядочивание действий и понятная логика
+                взаимодействия.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-space" id="approach">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-kicker">Подход к работе</span>
+          <h2 class="section-title">Как строится работа</h2>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-xl-4">
+            <div class="approach-card reveal">
+              <div class="approach-icon"><i class="fas fa-search"></i></div>
+              <h3 class="approach-title">Анализ задачи</h3>
+              <p class="approach-text">
+                Сначала разбираем цель, ограничения и практический сценарий,
+                чтобы решение сразу строилось на реальной задаче.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-xl-4">
+            <div class="approach-card reveal">
+              <div class="approach-icon"><i class="fas fa-layer-group"></i></div>
+              <h3 class="approach-title">Понятная структура</h3>
+              <p class="approach-text">
+                Выстраиваем логику так, чтобы инструмент был удобным, не
+                перегруженным и понятным в использовании.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-xl-4">
+            <div class="approach-card reveal">
+              <div class="approach-icon"><i class="fas fa-bullseye"></i></div>
+              <h3 class="approach-title">Практический результат</h3>
+              <p class="approach-text">
+                Минимум лишних функций, максимум пользы. Всё должно работать на
+                конкретный процесс, а не просто красиво выглядеть.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-xl-6">
+            <div class="approach-card reveal">
+              <div class="approach-icon"><i class="fas fa-sliders-h"></i></div>
+              <h3 class="approach-title">Гибкость</h3>
+              <p class="approach-text">
+                Решение можно развивать дальше: добавлять новые сценарии,
+                улучшать интерфейс и адаптировать под новые задачи.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-xl-6">
+            <div class="approach-card reveal">
+              <div class="approach-icon"><i class="fas fa-check-circle"></i></div>
+              <h3 class="approach-title">Готовность к использованию</h3>
+              <p class="approach-text">
+                На выходе нужен не абстрактный макет, а рабочий инструмент,
+                который можно применять сразу после внедрения.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-space">
+      <div class="container">
+        <div class="result-box reveal">
+          <span class="section-kicker">Результат</span>
+          <h2 class="section-title">Рабочий инструмент, а не просто идея</h2>
+          <p class="section-text">
+            На выходе вы получаете решение, которое решает конкретную задачу и
+            может быть использовано сразу после внедрения. Оно выглядит аккуратно,
+            работает понятно и остаётся удобной базой для дальнейшего развития.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-space" id="contact">
+      <div class="container">
+        <div class="contact-box reveal">
+          <span class="section-kicker">Контакт</span>
+          <h2 class="section-title">Обсудить задачу</h2>
+          <p class="section-text">
+            Оставь имя и краткое описание задачи. Этот блок сейчас визуальный —
+            его можно подключить к отправке позже, когда определишься, куда именно
+            должны уходить сообщения.
+          </p>
+
+          <form class="contact-form" onsubmit="event.preventDefault(); alert('Форма пока работает как шаблон. Отправку можно подключить позже.');">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <input class="contact-field" type="text" placeholder="Имя" />
+              </div>
+              <div class="col-md-6">
+                <input class="contact-field" type="text" placeholder="Контакт для связи" />
+              </div>
+              <div class="col-12">
+                <textarea class="contact-area" placeholder="Опишите задачу"></textarea>
+              </div>
+              <div class="col-12">
+                <button class="btn-main" type="submit">Связаться</button>
+              </div>
+            </div>
+          </form>
+
+          <div class="mini-note">
+            Без социальных сетей, без лишнего шума, только понятный первый контакт.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      Цифровые решения и автоматизация задач
+    </div>
+  </footer>
+
+  <script>
+    const revealItems = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealItems.forEach((item) => revealObserver.observe(item));
+  </script>
+</body>
+</html>
